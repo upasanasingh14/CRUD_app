@@ -1,0 +1,70 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+    <body>
+        <h3 class="mt-3">All Employees</h3>
+        <div class="logout-btn">
+            <a href=" /employee/new" class="btn btn-primary mb-3 mt-3">Add new Employee</a>
+            <a href=" /login" class="btn btn-primary mb-3 mt-3">Log Out</a>
+        </div>
+        
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Unique Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile No</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Create date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( let employee of allEmployees) { %>
+
+                    <tr>
+                        <th scope="row">
+                            <%= employee._id %>
+                        </th>
+                        <td>
+                            <%= employee.image.url %>
+                        </td>
+
+                        <td>
+                            <%= employee.name %>
+                        </td>
+                        <td>
+                            <%= employee.email %>
+                        </td>
+                        <td>
+                            <%= employee.phoneNo %>
+                        </td>
+                        <td>
+                            <%= employee.designation %>
+                        </td>
+                        <td>
+                            <%= employee.gender %>
+                        </td>
+                        <td>
+                            <%= employee.course %>
+                        </td>
+                        <td>
+                            <% if(employee.created_at){ %>
+                                <%= employee.created_at.toString().split(" ").slice(0,4).join(" ")%>
+                            <% } %>
+                        </td>
+                        <td> <a href=" /employee/<%=employee._id%>/edit" class="btn btn-success mb-3">Edit</a> 
+                                    <form method="POST" action="/employee/<%=employee._id%>/?_method=DELETE">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                        </td>
+                    </tr>
+
+                    <% } %>
+            </tbody>
+        </table>
+    </body>

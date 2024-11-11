@@ -1,0 +1,95 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+    <body>
+        <div class="row mt-3">
+            <div class="col-8 offset-2">
+                <br><br>
+                <h3>Edit Employee</h3>
+                <form method="POST" action="/employee/<%= employee._id %>?_method=PUT" novalidate class="needs-validation">
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input name="employee[name]" value="<%= employee.name %>" type="text" class="form-control"
+                            required>
+                        <div class="invalid-feedback">Field cannot be empty</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input name="employee[email]" value="<%= employee.email %>" type="email" class="form-control"
+                            required>
+                        <div class="invalid-feedback">Field cannot be empty</div>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                        <label for="phoneNo" class="form-label">Mobile No</label>
+                        <input name="employee[phoneNo]" value="<%= employee.phoneNo %>" class="form-control" required>
+                        <div class="invalid-feedback">Field cannot be empty</div>
+                    </div>
+
+                    <div class="mb-3 col-md-8">
+                        <label for="designation" class="form-label">Designation</label>
+                        <select name="employee[designation]" value="<%= employee.designation %>" class="form-control" id="designation" required>
+                            <option value="HR">HR</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Sales">Sales</option>
+                        </select>
+
+                        <div class="invalid-feedback">Field cannot be empty</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="employee[gender]" value="Male" id="Male" checked=<%= employee.gender === "Male" %>>
+                            <label class="form-check-label" for="Male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="employee[gender]" value="Female" id="Female">
+                            <label class="form-check-label" for="Female">
+                                Female
+                            </label>
+                        </div>
+                        <div class="invalid-feedback">Field cannot be empty</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="course" class="form-label">Course</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="employee[course]" value="BCA" id="BCA" <% if (employee.course.indexOf("BCA") != -1) { %> checked <% } %>>
+                            <label class="form-check-label" for="BCA">
+                                BCA
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="employee[course]" value="MCA" id="MCA" <% if (employee.course.indexOf("MCA") != -1) { %> checked <% } %>>
+                            <label class="form-check-label" for="MCA">
+                                MCA
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="employee[course]" value="BSC" id="BSC" <% if (employee.course.indexOf("BSC") != -1) { %> checked <% } %>>
+                            <label class="form-check-label" for="BSC">
+                                BSC
+                            </label>
+                        </div>
+
+                        <div class="invalid-feedback">Required Field</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image Link</label>
+                        <input name="employee[image.url]" placeholder="enter image URL/Link" value="<%= employee.image.url %>" type="text"
+                            class="form-control">
+                    </div>
+
+                    <button class="btn btn-dark add-btn mt-3">Edit</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+    </body>
